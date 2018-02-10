@@ -1,0 +1,29 @@
+public HashMap<Integer, Integer> experimentInline(ArrayList<Integer> arrayList) {
+        HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+        ArrayList<Integer> results = null;
+        int keys = 1000000;
+        int flushNumber = 100;
+        for (int i = 0; i < arrayList.size(); i++) {
+            int p = (Integer) arrayList.get(i);
+            int p1 = p + 10;
+            int p2 = p1 - 10;
+            int p3 = p2 * 10;
+            int p4 = p3 / 10;
+            int key = p4 % keys;
+
+            if (i % flushNumber == 0) {
+                results = new ArrayList<Integer>();
+                for (Integer values : hashMap.values()) {
+                    results.add(values);
+                }
+            }
+            Integer po = (Integer) hashMap.get(key);
+            if (po == null) {
+                hashMap.put(key, p4);
+            } else {
+                int po1 = (Integer) hashMap.get(key);
+                hashMap.put(key, po1 + p4);
+            }
+        }
+        return hashMap;
+}

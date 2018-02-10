@@ -9,12 +9,12 @@ public class OnHeap
 {
     private long tradeId;
 
-    public long setField()
+    public long getField()
     {
         return tradeId;
     }
 
-    public void getField(final long tradeId)
+    public void setField(final long tradeId)
     {
         this.tradeId = tradeId;
     }

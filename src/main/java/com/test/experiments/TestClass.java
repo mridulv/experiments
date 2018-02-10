@@ -23,12 +23,10 @@ public class TestClass {
     }
 
     public static void main(String args[]) throws NoSuchFieldException, IllegalAccessException, InterruptedException {
-        long[] l = new long[1000000];
-        long address = unsafe.allocateMemory(100L);
-        for (int i = 0; i < 1000000 ; i++) {
-            l[i] = unsafe.getLong(address);
-        }
-        Thread.sleep(1000000);
+        NormalObject normalObject = new NormalObject();
+        unsafe.getLong(normalObject, 16L);
+        unsafe.getLong(normalObject, 24L);
+        unsafe.getLong(normalObject, 32L);
     }
 
     @SuppressWarnings("restriction")

@@ -7,7 +7,6 @@ import sun.misc.Unsafe;
  */
 public class OffHeap
 {
-    private static final long fieldOffset = 0;
     private long objectOffset;
 
     public OffHeap(long address) {
@@ -16,11 +15,11 @@ public class OffHeap
 
     public long getField(Unsafe unsafe)
     {
-        return unsafe.getLong(objectOffset + fieldOffset);
+        return unsafe.getLong(objectOffset);
     }
 
-    public void getField(Unsafe unsafe, final long tradeId)
+    public void putField(Unsafe unsafe, final long tradeId)
     {
-        unsafe.putLong(objectOffset + fieldOffset, tradeId);
+        unsafe.putLong(objectOffset, tradeId);
     }
 }

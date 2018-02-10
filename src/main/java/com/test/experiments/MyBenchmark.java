@@ -26,10 +26,14 @@
 package com.test.experiments;
 
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.infra.Blackhole;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 
+@State(Scope.Thread)
 public class MyBenchmark {
 
     public static Unsafe unsafe;
@@ -65,17 +69,17 @@ public class MyBenchmark {
         }
     }
 
-    @Benchmark
-    public void testMethod() {
-        OnHeap onHeap = new OnHeap();
-        onHeap.getField(100);
-        onHeap.setField();
-    }
-
-    @Benchmark
-    public void testMethod2() {
-        OffHeap offHeap = new OffHeap(initialAddress);
-        offHeap.getField(unsafe, 100);
-        offHeap.getField(unsafe);
-    }
+//    @Benchmark
+//    public void testMethod(Blackhole blackhole) {
+//        OnHeap onHeap = new OnHeap();
+//        onHeap.setField(100L);
+//        blackhole.consume(onHeap.getField());
+//    }
+//
+//    @Benchmark
+//    public void testMethod2(Blackhole blackhole) {
+//        OffHeap offHeap = new OffHeap(initialAddress);
+//        offHeap.putField(unsafe, 100);
+//        blackhole.consume(offHeap.getField(unsafe));
+//    }
 }
